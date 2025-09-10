@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,6 +6,7 @@ import { Component, input } from '@angular/core';
   imports: [],
   templateUrl: './input.component.html',
   styleUrl: './input.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class InputComponent {
   label = input.required<string>();
