@@ -7,8 +7,12 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   templateUrl: './input.component.html',
   styleUrl: './input.component.css',
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'control' },
+  host: { class: 'control', '(click)': 'onClick()' },
 })
 export class InputComponent {
   label = input.required<string>();
+
+  onClick() {
+    console.log('Clicked input');
+  }
 }
