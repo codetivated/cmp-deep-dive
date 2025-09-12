@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { InputComponent } from '../../../shared/input/input.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-new-ticket',
   standalone: true,
-  imports: [ButtonComponent, InputComponent],
+  imports: [ButtonComponent, InputComponent, FormsModule],
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css',
 })
-export class NewTicketComponent {}
+export class NewTicketComponent {
+  onSubmit() {
+    console.log('Form submitted');
+  }
+}
