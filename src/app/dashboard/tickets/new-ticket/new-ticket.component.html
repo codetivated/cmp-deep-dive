@@ -1,13 +1,10 @@
 <form
   #form
   (ngSubmit)="
-    onSubmit(
-      {
-        title: titleInput.value,
-        request: requestInput.value
-      },
-      form
-    )
+    onSubmit({
+      title: titleInput.value,
+      request: requestInput.value
+    })
   "
 >
   <app-input label="Title">
