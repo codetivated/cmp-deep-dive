@@ -11,11 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-ticket.component.css',
 })
 export class NewTicketComponent {
-  // @ViewChild('form'): Tells Angular to look for a template reference variable (e.g. #form) in the template.
-  // form?: The ? means it’s optional — it might be undefined until the view initializes.
-  // ElementRef<HTMLFormElement>: This provides direct access to the native DOM node, and the generic HTMLFormElement tells TypeScript what kind of element to expect.
-
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
+  // @ViewChildren is used to query and access multiple elements, directives, or components in the view DOM of a component class. It returns a QueryList
+  // @ViewChild is used to query and access a single element, directive, or component in the view DOM of a component class. It returns the first matching element.
 
   onSubmit(ticket: { title: string; request: string }) {
     console.log('Form submitted', ticket);
