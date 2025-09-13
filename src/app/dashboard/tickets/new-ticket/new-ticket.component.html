@@ -1,10 +1,13 @@
 <form
+  #form
   (ngSubmit)="
-    onSubmit({
-      title: titleInput.value,
-      request: requestInput.value,
-      button: btn
-    })
+    onSubmit(
+      {
+        title: titleInput.value,
+        request: requestInput.value
+      },
+      form
+    )
   "
 >
   <app-input label="Title">
@@ -14,8 +17,7 @@
     <textarea name="request" id="request" rows="3" #requestInput></textarea>
   </app-input>
   <p>
-    <!-- adding a template reference variable to the button to demonstrate that it's an instance to the button component -->
-    <button appButton #btn>
+    <button appButton>
       Submit
       <span ngProjectAs="icon">⌲</span>
     </button>
