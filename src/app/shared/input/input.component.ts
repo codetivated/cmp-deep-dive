@@ -9,6 +9,8 @@ import {
   ContentChild,
   contentChild,
   AfterContentInit,
+  afterRender,
+  afterNextRender,
 } from '@angular/core';
 
 @Component({
@@ -40,18 +42,28 @@ export class InputComponent implements AfterContentInit {
       'input'
     );
 
+  constructor() {
+    afterRender(() => {
+      console.log('After Render: the view has been rendered');
+      console.log('The input element is:', this.inputVar());
+    });
+
+    afterNextRender(() => {
+      console.log('After Next Render: the view has been rendered');
+      console.log('The input element is:', this.inputVar());
+    });
+  }
+
   ngAfterContentInit(): void {
-    console.log('After Content Init: projected content is set');
-    console.log('The input element is:', this.inputVar());
+    // console.log('After Content Init: projected content is set');
+    // console.log('The input element is:', this.inputVar());
   }
 
   onClick() {
-    console.log('Clicked input');
-    console.log(this.elementRef);
-    console.log(this.inputVar());
+    // console.log('Clicked input');
+    // console.log(this.elementRef);
+    // console.log(this.inputVar());
   }
 }
 
-// Using @ContentChild to access projected content
-// The @ContentChild decorator is used to get a reference to the projected content in the template and needs to be used with AfterContentInit lifecycle hook
-// The contentChild() function is an alternative to @ContentChild and is used similarly but can be used with OnInit lifecycle hook
+//afterRender and afterNextRender are lifecycle hooks that allow you to run code after the component's view has been rendered. They are useful for performing actions that depend on the DOM being fully initialized, such as accessing or manipulating DOM elements. The key difference is that afterRender runs immediately after the view is rendered, while afterNextRender runs after the next change detection cycle, ensuring that any changes made during the initial render are accounted for.

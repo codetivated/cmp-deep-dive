@@ -42,7 +42,3 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     this.form?.nativeElement.reset();
   }
 }
-
-// Using @ViewChild to access the form element in the template
-// The @ViewChild decorator is used to get a reference to the form element in the template and needs to be used with AfterViewInit lifecycle hook
-// The viewChild() function is an alternative to @ViewChild and is used similarly but can be used with OnInit lifecycle hook
