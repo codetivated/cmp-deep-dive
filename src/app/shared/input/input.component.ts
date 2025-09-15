@@ -65,5 +65,3 @@ export class InputComponent implements AfterContentInit {
     // console.log(this.inputVar());
   }
 }
-
-//afterRender and afterNextRender are lifecycle hooks that allow you to run code after the component's view has been rendered. They are useful for performing actions that depend on the DOM being fully initialized, such as accessing or manipulating DOM elements. The key difference is that afterRender runs immediately after the view is rendered, while afterNextRender runs after the next change detection cycle, ensuring that any changes made during the initial render are accounted for.

@@ -5,6 +5,8 @@ import {
   OnDestroy,
   OnInit,
   DestroyRef,
+  signal,
+  effect,
 } from '@angular/core';
 
 @Component({
@@ -15,10 +17,18 @@ import {
   styleUrl: './server-status.component.css',
 })
 export class ServerStatusComponent implements OnInit, AfterViewInit {
-  currentStatus: 'online' | 'offline' | 'unknown' = 'online';
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('offline');
   private destroyRef = inject(DestroyRef);
 
-  constructor() {}
+  constructor() {
+    //! Angular doesn't set up the signals/subscriptions until after the constructor so the state here is always the initial state
+    // console.log('CONSTRUCTOR', this.currentStatus());
+
+    //! The effect runs once immediately to establish the dependency, then runs again whenever the signal changes. The state can be accessed here because the effect runs after Angular has set up the signals/subscriptions.
+    effect(() => {
+      console.log('EFFECT - server status changed:', this.currentStatus());
+    });
+  }
 
   ngOnInit() {
     console.log('OnInit');
@@ -27,11 +37,11 @@ export class ServerStatusComponent implements OnInit, AfterViewInit {
       console.log('Random number: ' + random);
 
       if (random < 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online');
       } else if (random < 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     }, 5000);
     this.destroyRef.onDestroy(() => {
