@@ -7,6 +7,7 @@ import {
   ElementRef,
   ViewEncapsulation,
   ContentChild,
+  contentChild,
 } from '@angular/core';
 
 @Component({
@@ -29,13 +30,18 @@ export class InputComponent {
 
   // Accessing projected content with @ContentChild
   // @ContentChild('input') is referencing a template reference variable, so the child content must have that #input reference for Angular to find it.
-  @ContentChild('input') private inputVar?: ElementRef<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
+  // @ContentChild('input') private inputVar?: ElementRef<
+  //   HTMLInputElement | HTMLTextAreaElement
+  // >;
+
+  private inputVar =
+    contentChild.required<ElementRef<HTMLInputElement | HTMLTextAreaElement>>(
+      'input'
+    );
 
   onClick() {
     console.log('Clicked input');
     console.log(this.elementRef);
-    console.log(this.inputVar);
+    console.log(this.inputVar());
   }
 }
