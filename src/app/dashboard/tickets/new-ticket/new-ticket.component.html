@@ -8,10 +8,16 @@
   "
 >
   <app-input label="Title">
-    <input name="title" id="title" #titleInput />
+    <input name="title" id="title" #titleInput #input />
   </app-input>
   <app-input label="Request">
-    <textarea name="request" id="request" rows="3" #requestInput></textarea>
+    <textarea
+      name="request"
+      id="request"
+      rows="3"
+      #requestInput
+      #input
+    ></textarea>
   </app-input>
   <p>
     <button appButton>
