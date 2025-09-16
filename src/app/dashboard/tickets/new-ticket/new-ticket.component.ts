@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent implements OnInit, AfterViewInit {
   // private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  enteredTitle = '';
+  enteredRequest = '';
 
   @ViewChild('form') private form?: ElementRef<HTMLFormElement>;
   addTicket = output<{ title: string; request: string }>();
@@ -36,8 +38,11 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     console.log('The form element is:', this.form?.nativeElement);
   }
 
-  onSubmit(ticket: { title: string; request: string }) {
+  onSubmit() {
+    const ticket = { title: this.enteredTitle, request: this.enteredRequest };
     this.addTicket.emit(ticket);
-    this.form?.nativeElement.reset();
+    // this.form?.nativeElement.reset();
+    this.enteredTitle = '';
+    this.enteredRequest = '';
   }
 }

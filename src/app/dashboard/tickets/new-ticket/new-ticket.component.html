@@ -1,21 +1,13 @@
-<form
-  #form
-  (ngSubmit)="
-    onSubmit({
-      title: titleInput.value,
-      request: requestInput.value
-    })
-  "
->
+<form #form (ngSubmit)="onSubmit()">
   <app-input label="Title">
-    <input name="title" id="title" #titleInput #input />
+    <input name="title" id="title" #input [(ngModel)]="enteredTitle" />
   </app-input>
   <app-input label="Request">
     <textarea
       name="request"
       id="request"
       rows="3"
-      #requestInput
+      [(ngModel)]="enteredRequest"
       #input
     ></textarea>
   </app-input>
