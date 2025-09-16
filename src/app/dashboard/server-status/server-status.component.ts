@@ -21,10 +21,8 @@ export class ServerStatusComponent implements OnInit, AfterViewInit {
   private destroyRef = inject(DestroyRef);
 
   constructor() {
-    //! Angular doesn't set up the signals/subscriptions until after the constructor so the state here is always the initial state
     // console.log('CONSTRUCTOR', this.currentStatus());
 
-    //! The effect runs once immediately to establish the dependency, then runs again whenever the signal changes. The state can be accessed here because the effect runs after Angular has set up the signals/subscriptions.
     effect(() => {
       console.log('EFFECT - server status changed:', this.currentStatus());
     });
